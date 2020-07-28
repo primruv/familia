@@ -27,19 +27,19 @@
           class="mt-4 mb-5"
         >
           <b-carousel-slide
-            caption="Get Apple Music and Netflix for the price of Netflix"
+            caption="Subscribe and get Apple Music, save $10 annually"
             img-src="./assets/image50.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Never worry about monthly billings again"
+            caption="Never worry about monthly billings again, we handle that"
             img-src="./assets/image49.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Get Apple Music for free by inviting your friends"
+            caption="Subscribe and get Spotify, save $8 annually"
             img-src="./assets/image36.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Enjoy the best of Entertainment on a friendly budget"
+            caption="Enjoy the best of Digital Music content on a friendly budget"
             img-src="./assets/im1.jpg"
           ></b-carousel-slide>
         </b-carousel>
@@ -53,56 +53,53 @@
           <!-- card 1 -->
           <b-card
             border-variant="default"
-            header="Freemium"
+            header="Spotify"
             header-bg-variant="secondary"
             header-text-variant="white"
             align="center"
-            title="$0/month"
+            title="$6/month"
             tag="article"
             style="max-width: auto;"
             class="mb-5 mt-2"
           >
             <br />
             <b-card-text>
-              Get a free Apple Music subscription for 1 year by
-              getting 3 of your friends to subcribe to basic or premium
+              Get a 1 year subscription to Spotify for a fraction 
+              of the official cost. This is billed once for the year
             </b-card-text>
             <b-list-group flush>
               <b-list-group-item></b-list-group-item>
               <b-list-group-item>
-                <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Apple Music
+                <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Spotify
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Netflix Family
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Music
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Prime
-              </b-list-group-item>
-              <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Spotify Family
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Apple Music 
               </b-list-group-item>
               <b-list-group-item></b-list-group-item>
             </b-list-group>
             <br />
-            <b-button v-b-modal.modal-2 variant="secondary">Get Referral Code</b-button>
+            <b-button v-b-modal.modal-1 variant="secondary">Subscribe</b-button>
             <br />
           </b-card>
           <!-- card 2 -->
           <b-card
             border-variant="info"
-            header="Basic"
+            header="Apple Music"
             header-bg-variant="info"
             header-text-variant="white"
             align="center"
-            title="$9/month"
+            title="$1.5/month"
             tag="article"
             style="max-width: auto;"
             class="mb-5 mt-2"
           >
             <br />
             <b-card-text>
-              Get a 1 year subscription to both
-              Apple Music & Netflix. This is billed once for the year
+              Get a 1 year subscription to Apple Music for a fraction 
+              of the official cost. This is billed once for the year
             </b-card-text>
             <b-list-group flush>
               <b-list-group-item></b-list-group-item>
@@ -110,13 +107,10 @@
                 <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Apple Music
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Netflix Family
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Music
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Prime
-              </b-list-group-item>
-              <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Spotify Family
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Spotify 
               </b-list-group-item>
               <b-list-group-item></b-list-group-item>
             </b-list-group>
@@ -127,19 +121,19 @@
           <!-- card 3 -->
           <b-card
             border-variant="default"
-            header="Premium"
+            header="Apple Music & Spotify"
             header-bg-variant="secondary"
             header-text-variant="white"
             align="center"
-            title="$14/month"
+            title="$7/month"
             tag="article"
             style="max-width: auto;"
             class="mb-5 mt-2"
           >
             <br />
             <b-card-text>
-              Get a 1 year subscription to
-              Apple Music, Netflix and Spotify. This is billed once for the year
+              Get a 1 year subscription to both
+              Apple Music & Spotify. This is billed once for the year
             </b-card-text>
             <b-list-group flush>
               <b-list-group-item></b-list-group-item>
@@ -147,14 +141,11 @@
                 <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Apple Music
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Netflix Family
-              </b-list-group-item>
-              <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Prime
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Music
                 <b-badge variant="primary" pill>coming soon</b-badge>
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Spotify Family
+                <b-icon-check2-circle class="h5 mr-2 mb-0 mt-0" animation="fade"></b-icon-check2-circle>Spotify
               </b-list-group-item>
               <b-list-group-item></b-list-group-item>
             </b-list-group>
@@ -165,11 +156,6 @@
       </div>
     </b-container>
     <div class="footer">
-      <p>
-        Built with &#10084;&#65039; by
-        <a href="http://twitter.com/viclotana">Lotanna</a> and
-        <a href="http://twitter.com/PrimroseKatena">Primrose</a>
-      </p>
       <p>Familia App &copy; 2020</p>
     </div>
     <!-- Modals Start-->
@@ -217,7 +203,7 @@
               ></b-form-input>
             </b-form-group>
 
-            <b-form-group
+            <!-- <b-form-group
               id="input-group-2"
               label="Who Referred you?"
               label-for="input-2"
@@ -228,7 +214,7 @@
                 v-model="form.refer"
                 placeholder="Enter code of the person here"
               ></b-form-input>
-            </b-form-group>
+            </b-form-group> -->
 
             <b-form-group id="input-group-3" label="Plan:" label-for="input-3">
               <b-form-select id="input-3" v-model="form.plan" :options="plans" required></b-form-select>
@@ -239,56 +225,6 @@
               v-b-modal.modal-6
               @click="$bvModal.hide('modal-1')"
             >Proceed to pay</b-button>
-          </b-form>
-        </div>
-      </b-modal>
-      <!-- Modal 2 - getting referal code -->
-      <b-modal id="modal-2" title="Getting a Referral Code" hide-footer>
-        <div>
-          <b-form @submit="onSubmit" v-if="show">
-            <b-form-group
-              id="input-group-1"
-              label="Email address:"
-              label-for="input-1"
-              description="We'll never share your email with anyone else."
-            >
-              <b-form-input
-                id="input-1"
-                v-model="form.appleId"
-                type="email"
-                required
-                placeholder="Enter email"
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-              <b-form-input id="input-2" v-model="form.name" required placeholder="Enter name"></b-form-input>
-            </b-form-group>
-            <b-form-group id="input-group-2" label="Choose a Password:" label-for="text-password">
-              <b-form-input
-                type="password"
-                v-model="form.password"
-                aria-describedby="password-help-block"
-                required
-                placeholder="Enter new password"
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group id="input-group-2" label="Confirm Password:" label-for="text-password">
-              <b-form-input
-                type="password"
-                v-model="form.password"
-                aria-describedby="password-help-block"
-                required
-                placeholder="Confirm password"
-              ></b-form-input>
-            </b-form-group>
-            <b-button
-              type="submit"
-              v-b-modal.modal-5
-              @click="$bvModal.hide('modal-2')"
-              variant="primary"
-            >Get Referral Code</b-button>
           </b-form>
         </div>
       </b-modal>
@@ -410,8 +346,9 @@ export default {
       },
       plans: [
         { text: "Select One", value: null },
-        "1 year Basic plan ($108)",
-        "1 year Premium plan ($168)"
+        "1 year Apple Music plan ($18)",
+        "1 year Spotify plan ($72)",
+        "1 year Both plans ($84)"
       ],
       show: true,
       refferal: {}
