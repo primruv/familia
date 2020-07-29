@@ -156,6 +156,20 @@
       </div>
     </b-container>
     <div class="footer">
+<!-- <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+  <input type="hidden" name="public_key" value="FLWPUBK-a175345a7d60c66a929891412b4e6990-X" />
+  <input type="hidden" name="customer[email]" value="prim@rose.org" />
+  <input type="hidden" name="customer[phone_number]" value="0505555522" />
+  <input type="hidden" name="customer[name]" value="Prim Rose" />
+  <input type="hidden" name="tx_ref" value="bitethtx-019203" />
+  <input type="hidden" name="amount" value="100" />
+  <input type="hidden" name="payment_options" value="card" />
+  <input type="hidden" name="currency" value="GHS" />
+  <input type="hidden" name="meta[token]" value="54" />
+  <input type="hidden" name="redirect_url" value="https://demoredirect.localhost.me/" />
+  
+  <button type="submit">CHECKOUT</button> 
+</form> -->
       <p>Familia App &copy; 2020</p>
     </div>
     <!-- Modals Start-->
