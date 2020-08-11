@@ -3,13 +3,13 @@ const CustomerSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    minlength: 3
+
 
   },
-  appleId: {
+  email: {
     type: String,
     trim: true,
-    minlength: 3
+
 
   },
   phoneNumber: {

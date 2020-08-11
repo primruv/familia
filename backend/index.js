@@ -23,10 +23,17 @@ app.use(cors())
 
 // Using Spread Operator
 app.post('/', (req, res) => {
-  (Customer.create({
-    ...req.body, refferalCode
-  })).then((customer) => res.send(customer))
-    .catch((error) => console.log(error))
+  Customer.findOne({ email: req.body.email }).then((data) => {
+    if (!data) {
+      (Customer.create({
+        ...req.body, refferalCode
+      })).then((customer) => res.send(customer))
+        .catch((error) => console.log(error))
+    } else {
+      res.send({ error: true, msg: 'error user already exist' })
+    }
+  }).catch((error) => console.log(error))
+
 })
 
 

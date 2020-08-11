@@ -64,7 +64,7 @@
           >
             <br />
             <b-card-text>
-              Get a 1 year subscription to Spotify for a fraction 
+              Get a 1 year subscription to Spotify for a fraction
               of the official cost. This is billed once for the year
             </b-card-text>
             <b-list-group flush>
@@ -76,7 +76,7 @@
                 <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Music
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Apple Music 
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Apple Music
               </b-list-group-item>
               <b-list-group-item></b-list-group-item>
             </b-list-group>
@@ -98,7 +98,7 @@
           >
             <br />
             <b-card-text>
-              Get a 1 year subscription to Apple Music for a fraction 
+              Get a 1 year subscription to Apple Music for a fraction
               of the official cost. This is billed once for the year
             </b-card-text>
             <b-list-group flush>
@@ -110,7 +110,7 @@
                 <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Amazon Music
               </b-list-group-item>
               <b-list-group-item>
-                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Spotify 
+                <b-icon-x-circle class="h5 mr-2 mb-0 mt-0"></b-icon-x-circle>Spotify
               </b-list-group-item>
               <b-list-group-item></b-list-group-item>
             </b-list-group>
@@ -119,6 +119,7 @@
             <br />
           </b-card>
           <!-- card 3 -->
+
           <b-card
             border-variant="default"
             header="Apple Music & Spotify"
@@ -156,7 +157,7 @@
       </div>
     </b-container>
     <div class="footer">
-<!-- <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+      <!-- <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
   <input type="hidden" name="public_key" value="FLWPUBK-a175345a7d60c66a929891412b4e6990-X" />
   <input type="hidden" name="customer[email]" value="prim@rose.org" />
   <input type="hidden" name="customer[phone_number]" value="0505555522" />
@@ -169,7 +170,7 @@
   <input type="hidden" name="redirect_url" value="https://demoredirect.localhost.me/" />
   
   <button type="submit">CHECKOUT</button> 
-</form> -->
+      </form>-->
       <p>Familia App &copy; 2020</p>
     </div>
     <!-- Modals Start-->
@@ -192,7 +193,7 @@
                 placeholder="Enter email"
               ></b-form-input>
             </b-form-group>
-
+            <span>{{msg}}</span>
             <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
               <b-form-input id="input-2" v-model="form.name" required placeholder="Enter name"></b-form-input>
             </b-form-group>
@@ -210,7 +211,7 @@
             <b-form-group id="input-group-2" label="Confirm Password:" label-for="text-password">
               <b-form-input
                 type="password"
-                v-model="form.password"
+                v-model="form.confirmPassword"
                 aria-describedby="password-help-block"
                 required
                 placeholder="Confirm password"
@@ -228,7 +229,7 @@
                 v-model="form.refer"
                 placeholder="Enter code of the person here"
               ></b-form-input>
-            </b-form-group> -->
+            </b-form-group>-->
 
             <b-form-group id="input-group-3" label="Plan:" label-for="input-3">
               <b-form-select id="input-3" v-model="form.plan" :options="plans" required></b-form-select>
@@ -238,7 +239,7 @@
               variant="primary"
               v-b-modal.modal-6
               @click="$bvModal.hide('modal-1')"
-            >Proceed to pay</b-button>
+            >Next</b-button>
           </b-form>
         </div>
       </b-modal>
@@ -294,11 +295,19 @@
       <b-modal id="modal-6" title="How to Make Payment" hide-footer>
         <div>
           <b-form v-if="show">
-            <h5>
-              Send 43,200 Naira ($108 equivalent) to
-              xxxxxxxx Access Bank Nwose Lotanna Victor and
-              you will be notified in 24 hours of reciept of funds
-            </h5>
+            <flutterwave
+              :isProduction="isProduction"
+              :amount="form.plan === '1 year Apple Music plan ($18)' ? 18 : (form.plan === '1 year Spotify plan ($72)' ? 72 : 84)"
+              :name="form.name"
+              :email="form.email"
+              :reference="reference"
+              :flw-key="flwKey"
+              :callback="callback"
+              :close="close"
+              :currency="currency"
+              :country="country"
+              :payment_method="paymentMethod"
+            />
           </b-form>
         </div>
       </b-modal>
@@ -346,27 +355,55 @@
 
 <script>
 import api from "@/api";
+import Flutterwave from "@/flutterwave";
 export default {
   name: "app",
-  components: {},
+  components: {
+    Flutterwave,
+  },
   data() {
     return {
       form: {
-        appleId: "",
+        email: "",
         name: "",
         password: "",
+        confirmPassword: "",
         refer: "",
-        plan: null
+        plan: null,
+        amount: "",
       },
+      msg: "",
       plans: [
         { text: "Select One", value: null },
         "1 year Apple Music plan ($18)",
         "1 year Spotify plan ($72)",
-        "1 year Both plans ($84)"
+        "1 year Both plans ($84)",
       ],
       show: true,
-      refferal: {}
+
+      refferal: {},
+      isProduction: false,
+      flwKey: "FLWPUBK_TEST-da415f1ebe48d93c5b6e099bb9ce4990-X",
+      amount: "",
+      currency: "NGN",
+      country: "NG",
+      customer: {
+        name: "",
+        email: "",
+      },
+      paymentMethod: "",
     };
+  },
+
+  computed: {
+    reference() {
+      let text = "";
+      let possible =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 10; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      return text;
+    },
   },
 
   methods: {
@@ -374,11 +411,14 @@ export default {
       evt.preventDefault();
       // eslint-disable-next-line no-console
       console.log(this.form);
+      if (this.form.password !== this.form.confirmPass) return;
       const d = await api.createRefferal(this.form);
+      if (d.error === true) {
+        this.msg = d.msg;
+      }
       this.refferal = d;
-      alert(JSON.stringify(this.form));
-    }
-  }
+    },
+  },
 };
 </script>
 
