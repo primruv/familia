@@ -157,29 +157,16 @@
       </div>
     </b-container>
     <div class="footer">
-      <!-- <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
-  <input type="hidden" name="public_key" value="FLWPUBK-a175345a7d60c66a929891412b4e6990-X" />
-  <input type="hidden" name="customer[email]" value="prim@rose.org" />
-  <input type="hidden" name="customer[phone_number]" value="0505555522" />
-  <input type="hidden" name="customer[name]" value="Prim Rose" />
-  <input type="hidden" name="tx_ref" value="bitethtx-019203" />
-  <input type="hidden" name="amount" value="100" />
-  <input type="hidden" name="payment_options" value="card" />
-  <input type="hidden" name="currency" value="GHS" />
-  <input type="hidden" name="meta[token]" value="54" />
-  <input type="hidden" name="redirect_url" value="https://demoredirect.localhost.me/" />
-  
-  <button type="submit">CHECKOUT</button> 
-      </form>-->
       <p>Familia App &copy; 2020</p>
     </div>
     <!-- Modals Start-->
     <div>
-      <!-- Modal 1 for basic and premium -->
-      <b-modal id="modal-1" title="Subscribing for a Familia Plan" hide-footer>
-        <div>
-          <b-form @submit="onSubmit" v-if="show">
-            <b-form-group
+      <b-modal id="modal-1" hide-footer title="Subscribing to Familia">
+    <validation-observer ref="observer" v-slot="{ handleSubmit }">
+      <b-form @submit.stop.prevent="handleSubmit(onSubmit)">
+
+          <!-- email -->
+        <b-form-group
               id="input-group-1"
               label="Email address:"
               label-for="input-1"
@@ -194,16 +181,30 @@
               ></b-form-input>
             </b-form-group>
             <span>{{msg}}</span>
-            <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-              <b-form-input id="input-2" v-model="form.name" required placeholder="Enter name"></b-form-input>
-            </b-form-group>
+            <!-- name -->
+        <validation-provider
+          name="Name"
+          :rules="{ required: true, min: 4 }"
+          v-slot="validationContext">
+          <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
+            <b-form-input
+              id="example-input-1"
+              name="example-input-1"
+              v-model="form.name"
+              :state="getValidationState(validationContext)"
+              aria-describedby="input-1-live-feedback">
+            </b-form-input>
 
-            <b-form-group id="input-group-2" label="Choose a Password:" label-for="text-password">
+            <b-form-invalid-feedback id="input-1-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+          </b-form-group>
+        </validation-provider>
+        <!-- password -->
+         <b-form-group id="input-group-2" label="Choose a Password:" label-for="text-password">
               <b-form-input
                 type="password"
+                required
                 v-model="form.password"
                 aria-describedby="password-help-block"
-                required
                 placeholder="Enter new password"
               ></b-form-input>
             </b-form-group>
@@ -211,38 +212,35 @@
             <b-form-group id="input-group-2" label="Confirm Password:" label-for="text-password">
               <b-form-input
                 type="password"
-                v-model="form.confirmPassword"
+                v-model="form.password"
                 aria-describedby="password-help-block"
                 required
                 placeholder="Confirm password"
               ></b-form-input>
             </b-form-group>
+        <!-- Plans -->
+        <validation-provider name="Plan" :rules="{ required: true }" v-slot="validationContext">
+          <b-form-group id="example-input-group-2" label="Plan" label-for="example-input-2">
+            <b-form-select
+              id="example-input-2"
+              name="example-input-2"
+              v-model="form.Plan"
+              :options="Plans"
+              :state="getValidationState(validationContext)"
+              aria-describedby="input-2-live-feedback"
+            ></b-form-select>
 
-            <!-- <b-form-group
-              id="input-group-2"
-              label="Who Referred you?"
-              label-for="input-2"
-              description="You can leave this blank if no one referred you"
-            >
-              <b-form-input
-                id="input-2"
-                v-model="form.refer"
-                placeholder="Enter code of the person here"
-              ></b-form-input>
-            </b-form-group>-->
-
-            <b-form-group id="input-group-3" label="Plan:" label-for="input-3">
-              <b-form-select id="input-3" v-model="form.plan" :options="plans" required></b-form-select>
-            </b-form-group>
-            <b-button
+            <b-form-invalid-feedback id="input-2-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+          </b-form-group>
+        </validation-provider>
+        <b-button
               type="submit"
               variant="primary"
-              v-b-modal.modal-6
-              @click="$bvModal.hide('modal-1')"
-            >Next</b-button>
-          </b-form>
-        </div>
-      </b-modal>
+              @submit="modalShow = !modalShow"
+              >Next</b-button>
+      </b-form>
+    </validation-observer>
+</b-modal>
       <!-- Modal 3 - Login button -->
       <b-modal id="modal-3" title="Login" hide-footer>
         <div>
@@ -292,12 +290,12 @@
         </div>
       </b-modal>
       <!-- modal 6 to display payment instructions -->
-      <b-modal id="modal-6" title="How to Make Payment" hide-footer>
+      <b-modal id="modal-6" v-model="modalShow"  title="How to Make Payment" hide-footer>
         <div>
           <b-form v-if="show">
             <flutterwave
               :isProduction="isProduction"
-              :amount="form.plan === '1 year Apple Music plan ($18)' ? 18 : (form.plan === '1 year Spotify plan ($72)' ? 72 : 84)"
+              :amount="form.Plan === '1 year Apple Music plan ($18)' ? 9000 : (form.plan === '1 year Spotify plan ($72)' ? 36000 : 42000)"
               :name="form.name"
               :email="form.email"
               :reference="reference"
@@ -329,7 +327,7 @@
             is why you are billed for 12 months at once.
           </b-list-group-item>
           <b-list-group-item>
-            <h5 style="text-align:center;">I lost my Apple Music or Netflix Login details</h5>
+            <h5 style="text-align:center;">I lost my Apple Music or Spotify Login details</h5>
           </b-list-group-item>
           <b-list-group-item>
             You can get your login details by clicking on Login,
@@ -339,8 +337,7 @@
             <h5 style="text-align:center;">How does Familia make money?</h5>
           </b-list-group-item>
           <b-list-group-item>
-            We charge a little fee to be administrators of the Apple music,
-            Netflix and Spotify Family accounts we manage.
+            We charge a little fee to be administrators of the Apple music and Spotify Family accounts we manage.
           </b-list-group-item>
           <b-list-group-item>
             <h5 style="text-align:center;">How can I reach you?</h5>
@@ -365,15 +362,16 @@ export default {
     return {
       form: {
         email: "",
-        name: "",
+        name: null,
         password: "",
-        confirmPassword: "",
+        confirmPass: "",
         refer: "",
         plan: null,
         amount: "",
       },
       msg: "",
-      plans: [
+      modalShow: false,
+      Plans: [
         { text: "Select One", value: null },
         "1 year Apple Music plan ($18)",
         "1 year Spotify plan ($72)",
@@ -407,16 +405,18 @@ export default {
   },
 
   methods: {
-    async onSubmit(evt) {
-      evt.preventDefault();
-      // eslint-disable-next-line no-console
-      console.log(this.form);
+    getValidationState({ dirty, validated, valid = null }) {
+      return dirty || validated ? valid : null;
+    },
+    async onSubmit() {
+      this.modalShow = true;
       if (this.form.password !== this.form.confirmPass) return;
       const d = await api.createRefferal(this.form);
       if (d.error === true) {
         this.msg = d.msg;
       }
       this.refferal = d;
+
     },
   },
 };
