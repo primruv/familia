@@ -1,9 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import Vue from 'vue'
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://localhost:3000',
   json: true
 })
 
@@ -25,6 +23,6 @@ export default {
   },
 
   createRefferal(data) {
-    return this.excute('POST', '/', data)
+    return this.excute('POST', '/api', data)
   }
 }

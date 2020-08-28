@@ -1,3 +1,7 @@
 module.exports = {
-    publicPath: '/ubuntu/'
-  }
+  publicPath: '/familia/',
+  devServer: {
+    proxy: 'http://localhost:3000'
+  },
+  outputDir: '../public'
+}

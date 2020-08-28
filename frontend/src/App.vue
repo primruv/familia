@@ -162,11 +162,10 @@
     <!-- Modals Start-->
     <div>
       <b-modal id="modal-1" hide-footer title="Subscribing to Familia">
-    <validation-observer ref="observer" v-slot="{ handleSubmit }">
-      <b-form @submit.stop.prevent="handleSubmit(onSubmit)">
-
-          <!-- email -->
-        <b-form-group
+        <validation-observer ref="observer" v-slot="{ handleSubmit }">
+          <b-form @submit.stop.prevent="handleSubmit(onSubmit)">
+            <!-- email -->
+            <b-form-group
               id="input-group-1"
               label="Email address:"
               label-for="input-1"
@@ -182,24 +181,27 @@
             </b-form-group>
             <span>{{msg}}</span>
             <!-- name -->
-        <validation-provider
-          name="Name"
-          :rules="{ required: true, min: 4 }"
-          v-slot="validationContext">
-          <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
-            <b-form-input
-              id="example-input-1"
-              name="example-input-1"
-              v-model="form.name"
-              :state="getValidationState(validationContext)"
-              aria-describedby="input-1-live-feedback">
-            </b-form-input>
+            <validation-provider
+              name="Name"
+              :rules="{ required: true, min: 4 }"
+              v-slot="validationContext"
+            >
+              <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
+                <b-form-input
+                  id="example-input-1"
+                  name="example-input-1"
+                  v-model="form.name"
+                  :state="getValidationState(validationContext)"
+                  aria-describedby="input-1-live-feedback"
+                ></b-form-input>
 
-            <b-form-invalid-feedback id="input-1-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback>
-          </b-form-group>
-        </validation-provider>
-        <!-- password -->
-         <b-form-group id="input-group-2" label="Choose a Password:" label-for="text-password">
+                <b-form-invalid-feedback
+                  id="input-1-live-feedback"
+                >{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+              </b-form-group>
+            </validation-provider>
+            <!-- password -->
+            <b-form-group id="input-group-2" label="Choose a Password:" label-for="text-password">
               <b-form-input
                 type="password"
                 required
@@ -218,29 +220,27 @@
                 placeholder="Confirm password"
               ></b-form-input>
             </b-form-group>
-        <!-- Plans -->
-        <validation-provider name="Plan" :rules="{ required: true }" v-slot="validationContext">
-          <b-form-group id="example-input-group-2" label="Plan" label-for="example-input-2">
-            <b-form-select
-              id="example-input-2"
-              name="example-input-2"
-              v-model="form.Plan"
-              :options="Plans"
-              :state="getValidationState(validationContext)"
-              aria-describedby="input-2-live-feedback"
-            ></b-form-select>
+            <!-- Plans -->
+            <validation-provider name="Plan" :rules="{ required: true }" v-slot="validationContext">
+              <b-form-group id="example-input-group-2" label="Plan" label-for="example-input-2">
+                <b-form-select
+                  id="example-input-2"
+                  name="example-input-2"
+                  v-model="form.plan"
+                  :options="Plans"
+                  :state="getValidationState(validationContext)"
+                  aria-describedby="input-2-live-feedback"
+                ></b-form-select>
 
-            <b-form-invalid-feedback id="input-2-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback>
-          </b-form-group>
-        </validation-provider>
-        <b-button
-              type="submit"
-              variant="primary"
-              @submit="modalShow = !modalShow"
-              >Next</b-button>
-      </b-form>
-    </validation-observer>
-</b-modal>
+                <b-form-invalid-feedback
+                  id="input-2-live-feedback"
+                >{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+              </b-form-group>
+            </validation-provider>
+            <b-button type="submit" variant="primary" @submit="modalShow = !modalShow">Next</b-button>
+          </b-form>
+        </validation-observer>
+      </b-modal>
       <!-- Modal 3 - Login button -->
       <b-modal id="modal-3" title="Login" hide-footer>
         <div>
@@ -290,12 +290,12 @@
         </div>
       </b-modal>
       <!-- modal 6 to display payment instructions -->
-      <b-modal id="modal-6" v-model="modalShow"  title="How to Make Payment" hide-footer>
+      <b-modal id="modal-6" v-model="modalShow" title="How to Make Payment" hide-footer>
         <div>
           <b-form v-if="show">
             <flutterwave
               :isProduction="isProduction"
-              :amount="form.Plan === '1 year Apple Music plan ($18)' ? 9000 : (form.plan === '1 year Spotify plan ($72)' ? 36000 : 42000)"
+              :amount="form.plan === '1 year Apple Music plan ($18)' ? 9000 : (form.plan === '1 year Spotify plan ($72)' ? 36000 : 42000)"
               :name="form.name"
               :email="form.email"
               :reference="reference"
@@ -336,9 +336,7 @@
           <b-list-group-item>
             <h5 style="text-align:center;">How does Familia make money?</h5>
           </b-list-group-item>
-          <b-list-group-item>
-            We charge a little fee to be administrators of the Apple music and Spotify Family accounts we manage.
-          </b-list-group-item>
+          <b-list-group-item>We charge a little fee to be administrators of the Apple music and Spotify Family accounts we manage.</b-list-group-item>
           <b-list-group-item>
             <h5 style="text-align:center;">How can I reach you?</h5>
           </b-list-group-item>
@@ -409,14 +407,13 @@ export default {
       return dirty || validated ? valid : null;
     },
     async onSubmit() {
-      this.modalShow = true;
-      if (this.form.password !== this.form.confirmPass) return;
+      // if (this.form.password !== this.form.confirmPass) return;
       const d = await api.createRefferal(this.form);
       if (d.error === true) {
         this.msg = d.msg;
       }
+      this.modalShow = true;
       this.refferal = d;
-
     },
   },
 };
