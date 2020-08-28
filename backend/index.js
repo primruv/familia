@@ -22,7 +22,7 @@ app.use(cors())
 // })
 
 // Using Spread Operator
-app.post('/', (req, res) => {
+app.post('/api', (req, res) => {
   Customer.findOne({ email: req.body.email }).then((data) => {
     if (!data) {
       (Customer.create({
@@ -38,28 +38,28 @@ app.post('/', (req, res) => {
 
 
 //get all customers
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   Customer.find({})
     .then(customer => res.send(customer))
     .catch((error) => console.log(error))
 })
 
 //get all customers
-app.get('/:customerId', (req, res) => {
+app.get('/api/:customerId', (req, res) => {
   Customer.find({ _id: req.params.customerId })
     .then((customer) => res.send(customer))
     .catch((error) => console.log(error))
 })
 
 //get one customer
-app.get('/:customerId', (req, res) => {
+app.get('/api/:customerId', (req, res) => {
   Customer.findOne({ _id: req.params.customerId })
     .then((customer) => res.send(customer))
     .catch((error) => console.log(error))
 })
 
 //update one customer
-app.patch('/:customerId', (req, res) => {
+app.patch('/api/:customerId', (req, res) => {
   Customer.findOneAndUpdate({ '_id': req.params.customerId }, { $set: req.body })
     .then((customer) => res.send(customer))
     .catch((error) => console.log(error))
@@ -79,6 +79,17 @@ var refferalCode = randomString(8, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGH
 
 console.log(refferalCode)
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./public'));
+
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  });
+}
+
+const PORT = process.env.PORT || 3000;
+
 //connecting to the server
-app.listen(3000, () => console.log("Server is connected on port 3000"))
+app.listen(PORT, () => console.log("Server is connected on port 3000"))
 
