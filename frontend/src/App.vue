@@ -242,7 +242,7 @@
         </validation-observer>
       </b-modal>
       <!-- Modal 3 - Login button -->
-      <b-modal id="modal-3" title="Login" hide-footer>
+      <!-- <b-modal id="modal-3" title="Login" hide-footer>
         <div>
           <b-form v-if="show">
             <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
@@ -267,9 +267,9 @@
             <b-button v-b-modal.modal-4 variant="primary" @click="$bvModal.hide('modal-3')">Login</b-button>
           </b-form>
         </div>
-      </b-modal>
+      </b-modal>-->
       <!-- Modal 4 display your details -->
-      <b-modal id="modal-4" title="Your Familia Details" hide-footer>
+      <!-- <b-modal id="modal-4" title="Your Familia Details" hide-footer>
         <b-list-group>
           <b-list-group-item>Full Name: John Doe</b-list-group-item>
           <b-list-group-item>Email: johndoe@icloud.com</b-list-group-item>
@@ -280,15 +280,15 @@
           <b-list-group-item>Date of Subscription: January 1, 2020</b-list-group-item>
           <b-list-group-item>Date of Expiry: January 1, 2021</b-list-group-item>
         </b-list-group>
-      </b-modal>
+      </b-modal>-->
       <!-- modal 5 to display referal code -->
-      <b-modal id="modal-5" title="Your Referral Code" hide-footer>
+      <!-- <b-modal id="modal-5" title="Your Referral Code" hide-footer>
         <div>
           <b-form @submit="onSubmit" v-if="show">
             <h1 v-bind="refferal">{{refferal.refferalCode}}</h1>
           </b-form>
         </div>
-      </b-modal>
+      </b-modal>-->
       <!-- modal 6 to display payment instructions -->
       <b-modal id="modal-6" v-model="modalShow" title="How to Make Payment" hide-footer>
         <div>
@@ -300,8 +300,8 @@
               :email="form.email"
               :reference="reference"
               :flw-key="flwKey"
-              :callback="callback"
-              :close="close"
+              :callback="() => {}"
+              :close="() => {}"
               :currency="currency"
               :country="country"
               :payment_method="paymentMethod"

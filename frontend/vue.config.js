@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/familia/',
+  // publicPath: '/familia/',
   devServer: {
     proxy: 'http://localhost:3000'
   },
