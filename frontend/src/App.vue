@@ -295,7 +295,7 @@
           <b-form v-if="show">
             <flutterwave
               :isProduction="isProduction"
-              :amount="form.plan === '1 year Apple Music plan (₦150)' ? 150 : (form.plan === '1 year Spotify plan (₦30,000)' ? 30000 : 36500)"
+              :amount="form.plan === '1 year Apple Music plan (₦350)' ? 350 : (form.plan === '1 year Spotify plan (₦30,000)' ? 30000 : 36500)"
               :name="form.name"
               :email="form.email"
               :reference="reference"
