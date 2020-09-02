@@ -35,7 +35,7 @@
             img-src="./assets/image49.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Subscribe and get Spotify, save $2,800 annually"
+            caption="Subscribe and get Spotify, save ₦2,800 annually"
             img-src="./assets/image36.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
