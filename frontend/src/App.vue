@@ -378,8 +378,8 @@ export default {
       show: true,
 
       refferal: {},
-      isProduction: false,
-      flwKey: "FLWPUBK-8ee4fa5b87f8a57de4bb73e6a95a53e9-X",
+      isProduction: true,
+      flwKey: "FLWPUBK-02df35c6d3c34189a15b537eba41dcbe-X",
       amount: "",
       currency: "NGN",
       country: "NG",
