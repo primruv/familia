@@ -27,7 +27,7 @@
           class="mt-4 mb-5"
         >
           <b-carousel-slide
-            caption="Subscribe and get Apple Music, save $10 annually"
+            caption="Subscribe and get Apple Music, save ₦3,000 annually"
             img-src="./assets/image50.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
@@ -35,7 +35,7 @@
             img-src="./assets/image49.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
-            caption="Subscribe and get Spotify, save $8 annually"
+            caption="Subscribe and get Spotify, save $2,800 annually"
             img-src="./assets/image36.jpg"
           ></b-carousel-slide>
           <b-carousel-slide
@@ -57,7 +57,7 @@
             header-bg-variant="secondary"
             header-text-variant="white"
             align="center"
-            title="$6/month"
+            title="₦2,500/mo"
             tag="article"
             style="max-width: auto;"
             class="mb-5 mt-2"
@@ -91,7 +91,7 @@
             header-bg-variant="info"
             header-text-variant="white"
             align="center"
-            title="$1.5/month"
+            title="₦650/mo"
             tag="article"
             style="max-width: auto;"
             class="mb-5 mt-2"
@@ -126,7 +126,7 @@
             header-bg-variant="secondary"
             header-text-variant="white"
             align="center"
-            title="$7/month"
+            title="₦3,041/mo"
             tag="article"
             style="max-width: auto;"
             class="mb-5 mt-2"
@@ -295,7 +295,7 @@
           <b-form v-if="show">
             <flutterwave
               :isProduction="isProduction"
-              :amount="form.plan === '1 year Apple Music plan ($18)' ? 9000 : (form.plan === '1 year Spotify plan ($72)' ? 36000 : 42000)"
+              :amount="form.plan === '1 year Apple Music plan (₦7,800)' ? 7800 : (form.plan === '1 year Spotify plan (₦30,000)' ? 30000 : 36500)"
               :name="form.name"
               :email="form.email"
               :reference="reference"
@@ -371,9 +371,9 @@ export default {
       modalShow: false,
       Plans: [
         { text: "Select One", value: null },
-        "1 year Apple Music plan ($18)",
-        "1 year Spotify plan ($72)",
-        "1 year Both plans ($84)",
+        "1 year Apple Music plan (₦7,800)",
+        "1 year Spotify plan (₦30,000)",
+        "1 year Both plans (₦36,500)",
       ],
       show: true,
 
