@@ -295,7 +295,7 @@
           <b-form v-if="show">
             <flutterwave
               :isProduction="isProduction"
-              :amount="form.plan === '1 year Apple Music plan (₦200)' ? 200 : (form.plan === '1 year Spotify plan (₦30,000)' ? 30000 : 36500)"
+              :amount="form.plan === '1 year Apple Music plan (₦7800)' ? 7800 : (form.plan === '1 year Spotify plan (₦30,000)' ? 30000 : 36500)"
               :name="form.name"
               :email="form.email"
               :reference="reference"
@@ -371,7 +371,7 @@ export default {
       modalShow: false,
       Plans: [
         { text: "Select One", value: null },
-        "1 year Apple Music plan (₦200)",
+        "1 year Apple Music plan (₦7800)",
         "1 year Spotify plan (₦30,000)",
         "1 year Both plans (₦36,500)",
       ],
